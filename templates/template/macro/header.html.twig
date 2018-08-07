@@ -1,0 +1,15 @@
+{% macro header(title, params) %}
+    {% spaceless %}
+    <section class="content-header">
+        <h1>
+            {{ title|raw }}
+        </h1>
+        <ol class="breadcrumb">
+            {#<li class="breadcrumb-item"><a href="{{ path('admin_dashboard') }}"><i class="fa fa-dashboard"></i> General Dashboard</a></li>#}
+            {% for value in params|default([]) %}
+                <li class="{{ loop.last ? 'breadcrumb-item active' : 'breadcrumb-item' }}"><a href="{{ value.uri|default('javascript:;') }}">{{ value.name }}</a></li>
+            {% endfor %}
+        </ol>
+    </section>
+    {% endspaceless %}
+{% endmacro %}

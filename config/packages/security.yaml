@@ -1,0 +1,38 @@
+security:
+    encoders:
+        App\Entity\Users:
+            algorithm: bcrypt
+            cost: 10
+    providers:
+        admin_provider:
+            entity:
+                class: App\Entity\Users
+                property: username
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        main:
+            anonymous: true
+            pattern: ^/
+            provider: admin_provider
+            form_login:
+                login_path: admin_login
+                check_path: admin_login_check
+                default_target_path: admin_dashboard
+                username_parameter: _username
+                password_parameter: _password
+                post_only: true
+                csrf_token_generator: security.csrf.token_manager
+            logout:
+                path: admin_logout
+                target: admin_login
+    access_control:
+    - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+    - { path: ^/api/public/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+    - { path: ^/api/public/*, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+    - { path: ^/$, roles: [IS_AUTHENTICATED_FULLY, ROLE_USER] }
+    - { path: ^/*, roles: [IS_AUTHENTICATED_FULLY, ROLE_USER] }
+    - { path: ^/api/secure/, roles: [IS_AUTHENTICATED_FULLY, ROLE_USER] }
+    - { path: ^/api/secure/*, roles: [IS_AUTHENTICATED_FULLY, ROLE_USER] }
+

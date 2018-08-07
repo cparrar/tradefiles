@@ -1,0 +1,23 @@
+{
+  "name": "readfiles",
+  "version": "1.0.0",
+  "description": "Read files of trades",
+  "main": "gulpfile.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Zyos Override",
+  "license": "MIT",
+  "devDependencies": {
+    "dotenv": "^6.0.0",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-javascript-obfuscator": "^1.1.4",
+    "gulp-uglyfly": "^1.4.2",
+    "gulp-util": "^3.0.8",
+    "pump": "^3.0.0"
+  }
+}

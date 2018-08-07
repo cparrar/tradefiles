@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+            <meta name="description" content="">
+            <meta name="author" content="">
+            <link rel="icon" href="{{ asset('images/favicon.ico') }}">
+
+            <title>.:: Read Files ::.</title>
+            <link rel="stylesheet" href="{{ asset('assets/vendor_components/bootstrap/dist/css/bootstrap.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('src/css/bootstrap-extend.css') }}">
+            <link rel="stylesheet" href="{{ asset('src/css/master_style.css') }}">
+            <link rel="stylesheet" href="{{ asset('src/css/skins/_all-skins.css') }}">
+
+            <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+            <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+            <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+            <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+            <![endif]-->
+            <style>
+                .container-fluid, .expands-data {
+                    height: 100% !important;
+                }
+            </style>
+        </head>
+        <body class="hold-transition login-page">
+        <div class="container-fluid">
+            <section class="content container-fluid">
+                <div class="row expands-data">
+                    <div class="col-7 col-lg-7 col-md-7 col-sm-12 col-xs-12" id="api_public_dashboard" data-ajax-url="{{ absolute_url(path('api_public_dashboard')) }}" data-interval="{{ bag_params.get('vue_js_login_dashboard') }}">
+
+                        <div class="row">
+                            <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12" v-for="array in dashboard">
+                                <div class="box box-inverse box-info bg-deathstar-white">
+                                    <div class="box-header">
+                                        <h4 class="box-title"><strong>Account:</strong> <span v-text="array.name"></span></h4>
+                                    </div>
+                                    <div class="box-body">
+                                        <div v-for="(value, key) in array.content"><strong v-text="key"></strong>: <span v-text="value"></span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="col-5 col-lg-5 col-md-5 col-sm-12 col-xs-12 expand-data">
+
+                        <div class="box container-fluid" style="padding-top: 15px; padding-bottom: 40px;">
+                            <div class="login-logo">
+                                <b>Read</b>Files
+                            </div>
+                            <!-- /.login-logo -->
+                            <div class="login-box-body">
+                                <p class="login-box-msg">Sign in to start your session</p>
+
+                                <form action="{{ path('admin_login_check') }}" method="post" class="form-element">
+                                    <div class="form-group has-feedback">
+                                        <input type="email" name="_username" class="form-control" placeholder="Email">
+                                        <span class="ion ion-email form-control-feedback"></span>
+                                    </div>
+                                    <div class="form-group has-feedback">
+                                        <input type="password" name="_password" class="form-control" placeholder="Password">
+                                        <span class="ion ion-locked form-control-feedback"></span>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12 text-center">
+                                            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                                            <button type="submit" class="btn btn-info btn-block margin-top-10">SIGN IN</button>
+                                        </div>
+                                        <!-- /.col -->
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12 text-center" style="margin-top: 20px;">{% spaceless %}
+                                                {% if error %}
+                                                    <p><strong style="color: red;">{{ error.messageKey|trans(error.messageData, 'security') }}</strong></p>
+                                                {% endif %}
+                                            {% endspaceless %}</div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </section>
+        </div>
+            <script src="{{ asset('js/login.app.min.js') }}"></script>
+        </body>
+    </html>

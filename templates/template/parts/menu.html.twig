@@ -1,0 +1,27 @@
+<ul class="sidebar-menu" data-widget="tree">
+    <li class="nav-devider"></li>
+    <li class="header nav-small-cap">MENU</li>
+    <li><a href="{{ path('admin_dashboard') }}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
+    <li class="treeview">
+        <a href="#">
+            <i class="fa fa-share"></i> <span>Accounts</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-right pull-right"></i>
+            </span>
+        </a>
+        <ul id="api_secure_menu" class="treeview-menu" data-ajax-url="{{ absolute_url(path('api_secure_menu')) }}" data-interval="{{ bag_params.get('time_interval_menu') }}">
+            <li class="treeview" v-for="(item, key) in menu" v-bind:key="key">
+                <a v-bind:href="item.url"><span v-text="item.name"></span><span class="pull-right-container"><i class="fa fa-angle-right pull-right"></i></span></a>
+                <ul class="treeview-menu">
+                    <li v-for="(item2, key2) in item.content" v-if="item2.primary" v-bind:key="key2"><a v-bind:href="item2.url"><span v-text="item2.name"></span></a></li>
+                    <li class="treeview" v-else>
+                        <a v-bind:href="item2.url"><span v-text="item2.name"></span><span class="pull-right-container"><i class="fa fa-angle-right pull-right"></i></span></a>
+                        <ul class="treeview-menu">
+                            <li v-for="(item3, key3) in item2.content" v-if="item3.primary" v-bind:key="key3"><a v-bind:href="item3.url" v-text="item3.name"></a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+</ul>
