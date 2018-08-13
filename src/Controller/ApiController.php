@@ -14,6 +14,17 @@
      */
     class ApiController extends Controller {
 
+
+        /**
+         * @Route(path="/public/test")
+         */
+        public function test() {
+
+
+            dump($this->container->get('app.api.read.log')->getArray());
+            die;
+        }
+
         /**
          * Return public dashboard data
          *
@@ -30,7 +41,7 @@
                 return new JsonResponse(['code' => 404, 'message' => 'Dashboard no available'], 404);
             endif;
 
-            return new JsonResponse($this->container->get('app.api.show')->getDashboard());
+            return new JsonResponse($this->container->get('app.api.show')->getPublicDashboard());
         }
 
         /**

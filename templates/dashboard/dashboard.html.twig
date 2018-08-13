@@ -17,27 +17,52 @@
 
     {% block body %}
         <div class="row" id="api_secure_dashboard" data-ajax-url="{{ absolute_url(path('api_secure_dashboard')) }}" data-interval="{{ bag_params.get('time_interval_dashboard') }}">
-            <div class="col-12 col-lx-12 col-sm-12 col-md-12">
+            <div class="col-12 col-lx-12 col-sm-12 col-md-12" v-if="dashboard">
 
-                <div class="box">
-                    <div class="box-header with-border">
-                        <h3 class="box-title">Accounts</h3>
-                    </div>
-                    <div class="box-body">
-                        <div class="row">
+                <div class="row" v-if="dashboard.logs">
 
-                            <div class="col-md-4 col-4 col-lg-4 col-sm-12 col-xs-12 col-xl-4" v-for="value in dashboard">
-                                <div class="box box-inverse box-info text-center bg-info bg-hexagons-dark pull-up">
-                                    <div class="box-body">
-                                        <h3 class="font-weight-100 font-size-40" v-text="value.name"></h3>
-                                        <p v-for="data, key in value.content"><strong v-text="key"></strong>: <span v-text="data"></span></p>
+                    <div class="col-lg-12 col-md-12">
+                        <div class="box direct-chat">
+                            <div class="box-header with-border bg-info">
+                                <h3 class="box-title">Logs</h3>
+                            </div>
+                            <div class="box-body">
+                                <div id="chat-app" class="direct-chat-messages chat-app">
+                                    <div class="direct-chat-msg mb-30">
+                                        <pre v-text="dashboard.logs"></pre>
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
 
+                </div>
+
+                <div class="row" v-if="dashboard.accounts">
+                    <div class="col-12 col-lx-12 col-sm-12 col-md-12">
+                        <div class="box">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Accounts</h3>
+                            </div>
+                            <div class="box-body">
+
+                                <div class="row">
+
+                                    <div class="col-md-4 col-4 col-lg-4 col-sm-12 col-xs-12 col-xl-4" v-for="value in dashboard.accounts">
+                                        <div class="box box-inverse box-info text-center bg-info bg-hexagons-dark pull-up">
+                                            <div class="box-body">
+                                                <h3 class="font-weight-100 font-size-40" v-text="value.name"></h3>
+                                                <p v-for="data, key in value.content"><strong v-text="key"></strong>: <span v-text="data"></span></p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+
 
             </div>
         </div>

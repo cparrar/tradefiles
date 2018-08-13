@@ -1,0 +1,74 @@
+{% extends 'template/base.html.twig' %}
+    {% import 'template/macro/header.html.twig' as header %}
+
+
+    {% block css %}
+        {{  parent() }}
+        <style>
+            p {
+                margin-top: 0 !important;
+                margin-bottom: 0 !important;
+            }
+            .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+                padding: 0.5rem;
+            }
+            .table th {
+                font-weight: bold;
+                font-size: 10px;
+            }
+        </style>
+    {% endblock css %}
+
+    {% block header %}
+        {{ header.header('Edit Settings', [ { 'name':'Settings' }, { 'name':'Edit' } ]) }}
+    {% endblock header %}
+
+    {% block body %}
+        <div class="row">
+            <div class="col-12 col-lx-12 col-sm-12 col-md-12">
+
+                <div class="row">
+                    <div class="col-12 col-lx-12 col-sm-12 col-md-12">
+                        <div class="box">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Edit: {{ entity.title|title }}</h3>
+                            </div>
+                            <div class="box-body">
+
+                                <div class="row">
+
+                                    <div class="col-md-12 col-12 col-lg-12 col-sm-12 col-xs-12 col-xl-12">
+                                        {{ form_start(form, {'attr':{'novalidate':'novalidate'} }) }}
+                                            <div class="row">
+                                                <div class="col-6 col-lg-6 col-md-6 col-sm-12 col-xl-6 col-xs-12">
+                                                    <h3>{{ entity.title }}</h3>
+                                                    <h6>{{ entity.description }}</h6>
+                                                </div>
+                                                <div class="col-6 col-lg-6 col-md-6 col-sm-12 col-xl-6 col-xs-12">
+                                                    <div class="form-group">
+                                                        {{ form_label(form.value) }}
+
+                                                        <div class="input-group">
+                                                            {{ form_widget(form.value, {'attr':{'class':'form-control'} }) }}
+                                                            <span class="input-group-btn">
+                                                                <button class="btn btn-info" type="submit">Update</button>
+                                                            </span>
+                                                        </div>
+                                                        <div class="form-control-feedback" style="color: red; font-weight: bold;">{{ form_errors(form.value) }}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        {{ form_end(form) }}
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    {% endblock body %}

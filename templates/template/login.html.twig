@@ -32,8 +32,8 @@
                 <div class="row expands-data">
                     <div class="col-7 col-lg-7 col-md-7 col-sm-12 col-xs-12" id="api_public_dashboard" data-ajax-url="{{ absolute_url(path('api_public_dashboard')) }}" data-interval="{{ bag_params.get('vue_js_login_dashboard') }}">
 
-                        <div class="row">
-                            <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12" v-for="array in dashboard">
+                        <div class="row" v-if="dashboard">
+                            <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12" v-for="array in dashboard.accounts">
                                 <div class="box box-inverse box-info bg-deathstar-white">
                                     <div class="box-header">
                                         <h4 class="box-title"><strong>Account:</strong> <span v-text="array.name"></span></h4>

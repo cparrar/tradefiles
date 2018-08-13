@@ -46,6 +46,25 @@
                             </div>
                         </div>
 
+                        <div class="row" v-if="dashboard.logs">
+
+                            <div class="col-lg-12 col-md-12">
+                                <div class="box direct-chat">
+                                    <div class="box-header with-border bg-info">
+                                        <h3 class="box-title">Logs</h3>
+                                    </div>
+                                    <div class="box-body">
+                                        <div id="chat-app" class="direct-chat-messages chat-app">
+                                            <div class="direct-chat-msg mb-30">
+                                                <pre v-text="dashboard.logs"></pre>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
                         <div class="row" v-if="dashboard.campaign">
 
                             <div class="col-md-12 col-lg-12 col-12 col-sm-12">

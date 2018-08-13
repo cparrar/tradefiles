@@ -22,23 +22,44 @@
             $array = [
                 [
                     'name' => 'directory',
-                    'title' => 'Change reading directory',
+                    'title' => 'Change reading directory files',
                     'value' => 'C:\Users\Desarrollo\Downloads\Analysis\Analysis',
                     'description' => 'Directory where the different subdirectories of the campaigns and the CSV files are for reading.',
                     'type' => $this->getReference('TYPE_DIRECTORY')
                 ],
                 [
+                    'name' => 'log',
+                    'title' => 'Change reading directory log',
+                    'value' => 'C:\Users\Desarrollo\Downloads\Analysis\log',
+                    'description' => 'Directory where the logs are.',
+                    'type' => $this->getReference('TYPE_DIRECTORY')
+                ],
+                [
+                    'name' => 'log_raw_show',
+                    'title' => 'Change of number of lines of raw logs',
+                    'value' => '10',
+                    'description' => 'Change the number of lines that are observed in the list of logs that are found in the file.',
+                    'type' => $this->getReference('TYPE_PARAMS')
+                ],
+                [
                     'name' => 'cache_params',
-                    'title' => 'Parameters cache',
+                    'title' => 'Parameters storage in cache',
                     'value' => '1',
                     'description' => 'You can change the expiration time of the cache that is generated from the different system configurations, the configuration is in seconds.',
                     'type' => $this->getReference('TYPE_CACHE')
                 ],
                 [
                     'name' => 'cache_path',
-                    'title' => 'Directory reading cache',
+                    'title' => 'Directory reading in cache',
                     'value' => '1',
                     'description' => 'It is the expiration time of the read cache of the configured directory, the configuration is in seconds.',
+                    'type' => $this->getReference('TYPE_CACHE')
+                ],
+                [
+                    'name' => 'cache_dashboard_public',
+                    'title' => 'Information cache of dashboards login',
+                    'value' => '10',
+                    'description' => 'It is the expiration time of the cache of the reading of the different information files that are in each account, the configuration is in seconds.',
                     'type' => $this->getReference('TYPE_CACHE')
                 ],
                 [

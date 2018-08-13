@@ -19,7 +19,7 @@
          */
         public function load(ObjectManager $manager) {
 
-            $array = ['DIRECTORY', 'CACHE', 'HTML', 'FORMAT'];
+            $array = ['DIRECTORY', 'CACHE', 'HTML', 'FORMAT', 'PARAMS'];
 
             foreach ($array AS $value):
 

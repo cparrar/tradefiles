@@ -1,0 +1,68 @@
+    {% extends 'template/base.html.twig' %}
+    {% import 'template/macro/header.html.twig' as header %}
+
+
+    {% block css %}
+        {{  parent() }}
+        <style>
+            p {
+                margin-top: 0 !important;
+                margin-bottom: 0 !important;
+            }
+            .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+                padding: 0.5rem;
+            }
+            .table th {
+                font-weight: bold;
+                font-size: 10px;
+            }
+        </style>
+    {% endblock css %}
+
+    {% block header %}
+        {{ header.header('Settings List', [ { 'name':'Settings' }, { 'name':'List' } ]) }}
+    {% endblock header %}
+
+    {% block body %}
+        <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-xl-12">
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Configurations</h3>
+                </div>
+
+                <div class="box-body">
+
+                    <div class="vtabs customvtab">
+                        <ul class="nav nav-tabs tabs-vertical" role="tablist">
+                            {% for key, value in array %}
+                                <li class="nav-item"> <a class="nav-link {{ loop.first ? 'active' }}" data-toggle="tab" href="#home{{ loop.index }}" role="tab" aria-expanded="true"><span class="hidden-sm-up"><i class="ion-home"></i></span> <span class="hidden-xs-down">{{ key|title }}</span> </a> </li>
+                            {% endfor %}
+                        </ul>
+
+                        <div class="tab-content col-md-8">
+                            {% for key, value in array %}
+                                <div class="tab-pane {{ loop.first ? 'active' }}" id="home{{ loop.index }}" role="tabpanel" aria-expanded="{{ loop.first ? 'true':'false' }}">
+                                    <div class="pad">
+                                        <h3>Settings: {{ key|title }}</h3>
+                                        <table class="table table-hover">
+                                            <tbody>
+                                                {% for item in value %}
+                                                    <tr>
+                                                        <td>{{ item.title }}</td>
+                                                        <td><a href="{{ path('admin_settings_edit', {'id':item.id}) }}" class="btn btn-block btn-info">Edit</a></td>
+                                                    </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            {% endfor %}
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    {% endblock body %}
