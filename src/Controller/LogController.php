@@ -16,10 +16,16 @@
         /**
          * @Route("/", name="admin_logs_format")
          */
-        public function index() {
+        public function getFormat() {
 
-            return $this->render('log/index.html.twig', [
-                'controller_name' => 'LogController',
-            ]);
+            return $this->render('log/get_format.html.twig');
+        }
+
+        /**
+         * @Route(path="/raw", name="admin_logs_raw")
+         */
+        public function getRaw() {
+
+            return $this->render('log/get_raw.html.twig');
         }
     }

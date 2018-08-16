@@ -24,4 +24,19 @@
             </li>
         </ul>
     </li>
+
+    <li class="treeview {{- app.request.attributes.get('_route') in ['admin_logs_format', 'admin_logs_raw'] ? ' menu-open' -}}">
+        <a href="#">
+            <i class="icon-chart"></i>
+            <span>Logs</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+        </a>
+        <ul class="treeview-menu" {{- app.request.attributes.get('_route') in ['admin_logs_format', 'admin_logs_raw'] ? ' style="display: block;"' -}}>
+            <li {{- app.request.attributes.get('_route') == 'admin_logs_format' ? ' class="active"' -}}><a href="{{ path('admin_logs_format') }}">Format</a></li>
+            <li {{- app.request.attributes.get('_route') == 'admin_logs_raw' ? ' class="active"' -}}><a href="{{ path('admin_logs_raw') }}">Raw</a></li>
+        </ul>
+    </li>
+
 </ul>

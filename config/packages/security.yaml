@@ -35,4 +35,6 @@ security:
     - { path: ^/*, roles: [IS_AUTHENTICATED_FULLY, ROLE_USER] }
     - { path: ^/api/secure/, roles: [IS_AUTHENTICATED_FULLY, ROLE_USER] }
     - { path: ^/api/secure/*, roles: [IS_AUTHENTICATED_FULLY, ROLE_USER] }
+    - { path: ^/api/logs/, roles: [IS_AUTHENTICATED_FULLY, ROLE_USER] }
+    - { path: ^/api/logs/*, roles: [IS_AUTHENTICATED_FULLY, ROLE_USER] }
 

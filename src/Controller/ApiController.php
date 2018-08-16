@@ -45,6 +45,48 @@
         }
 
         /**
+         * Return secure log list
+         *
+         * @Route(path="/secure/log/format", name="api_secure_log_format")
+         *
+         * @return JsonResponse
+         * @throws \Psr\Cache\InvalidArgumentException
+         */
+        public function getLogFormat() {
+
+            $cache = $this->container->get('app.api.cache');
+
+            if($cache->has('cache_log_format')):
+                return new JsonResponse($cache->get('cache_log_format'));
+            else:
+                $data = $this->container->get('app.api.read.log')->getArrayLimited(40);
+                $cache->set('cache_log_format', $data, $this->container->get('app.api.params')->get('cache_log_format', 20));
+                return new JsonResponse($data);
+            endif;
+        }
+
+        /**
+         * Return secure log list
+         *
+         * @Route(path="/secure/log/raw", name="api_secure_log_raw")
+         *
+         * @return JsonResponse
+         * @throws \Psr\Cache\InvalidArgumentException
+         */
+        public function getLogRaw() {
+
+            $cache = $this->container->get('app.api.cache');
+
+            if($cache->has('cache_log_raw')):
+                return new JsonResponse($cache->get('cache_log_raw'));
+            else:
+                $data = $this->container->get('app.api.read.log')->getRaw();
+                $cache->set('cache_log_raw', $data, $this->container->get('app.api.params')->get('cache_log_raw', 20));
+                return new JsonResponse($data);
+            endif;
+        }
+
+        /**
          * Return menu data
          *
          * @Route(path="/secure/menu", name="api_secure_menu", methods={"GET"})

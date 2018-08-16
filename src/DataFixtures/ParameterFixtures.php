@@ -91,6 +91,20 @@
                     'type' => $this->getReference('TYPE_CACHE')
                 ],
                 [
+                    'name' => 'cache_log_format',
+                    'title' => 'log format reading file cache',
+                    'value' => '3',
+                    'description' => 'It is the expiration time of the cache of the reading log file, the configuration is in seconds.',
+                    'type' => $this->getReference('TYPE_CACHE')
+                ],
+                [
+                    'name' => 'cache_log_raw',
+                    'title' => 'log raw reading file cache',
+                    'value' => '3',
+                    'description' => 'It is the expiration time of the cache of the reading log file, the configuration is in seconds.',
+                    'type' => $this->getReference('TYPE_CACHE')
+                ],
+                [
                     'name' => 'vue_js_login_dashboard',
                     'title' => 'Login dashboard loading interval time',
                     'value' => '60',
@@ -130,6 +144,13 @@
                     'title' => 'Account Campaign Trade update time',
                     'value' => '5',
                     'description' => 'It is the interval of update of the different data that are observed in the campaign trade of account, the configuration is in seconds.',
+                    'type' => $this->getReference('TYPE_HTML')
+                ],
+                [
+                    'name' => 'time_interval_logs',
+                    'title' => 'Dashboard update time for logs',
+                    'value' => '20',
+                    'description' => 'It is the interval of update of the different data that are observed in the logs, the configuration is in seconds.',
                     'type' => $this->getReference('TYPE_HTML')
                 ],
             ];

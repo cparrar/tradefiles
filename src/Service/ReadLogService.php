@@ -101,7 +101,7 @@
             return [
                 'date' => $date,
                 'code' => $code,
-                'sub-code' => $subcode,
+                'sub_code' => $subcode,
                 'message' => $message
             ];
         }
