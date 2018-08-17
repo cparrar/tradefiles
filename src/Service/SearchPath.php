@@ -139,7 +139,7 @@
                 endforeach;
             endif;
 
-            $files2 = $this->searchPathFiles($path, 1);
+            $files2 = $this->searchPathFilesTrade($path, 1);
             if($files2->count() > 0):
                 foreach ($files2 AS $file):
                     $list['Trade'] = (new ParamsConstruct('Trade',
@@ -166,6 +166,22 @@
 
             $finder = new Finder();
             $finder->files()->in($path)->name(sprintf('%s*.csv', $this->pattern))->sortByName()->depth($depth);
+
+            return $finder;
+        }
+
+        /**
+         * Search files
+         *
+         * @param string $path
+         * @param int $depth
+         *
+         * @return null|Finder
+         */
+        private function searchPathFilesTrade(string $path, int $depth = 0) {
+
+            $finder = new Finder();
+            $finder->files()->in($path)->name(sprintf('%s_TRADES_*.csv', $this->pattern))->sortByName()->depth($depth);
 
             return $finder;
         }

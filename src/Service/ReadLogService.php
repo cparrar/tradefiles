@@ -50,13 +50,18 @@
             endif;
 
             $finder = new Finder();
-            $finder->files()->in($path)->name(sprintf('log.%s*', $this->parameter->getDate()))->sortByName();
+            $finder->files()->in($path)->name('CriticalLog.txt')->sortByName();
 
-            $iterator = $finder->getIterator();
-            $iterator->rewind();
-            $file = $iterator->current();
+            if($finder->count()):
 
-            return $raw == true ? $this->getReadFileRaw($file->getRealPath()) : $this->getReadFile($file->getRealPath());
+                $iterator = $finder->getIterator();
+                $iterator->rewind();
+                $file = $iterator->current();
+
+                return $raw == true ? $this->getReadFileRaw($file->getRealPath()) : $this->getReadFile($file->getRealPath());
+            endif;
+
+            return [];
         }
 
         /**
