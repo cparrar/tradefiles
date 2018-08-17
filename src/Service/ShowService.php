@@ -1,6 +1,8 @@
 <?php
 
     namespace App\Service;
+    
+    use Symfony\Bundle\FrameworkBundle\Routing\Router;
 
     /**
      * Class ShowService
@@ -48,6 +50,11 @@
          * @var ReadLogService
          */
         private $log;
+        
+        /**
+         * @var Router
+         */
+        private $router;
 
         /**
          * ShowService constructor.
@@ -61,7 +68,7 @@
          * @param ShowTradeFormat $tradeFormat
          * @param ReadLogService $log
          */
-        function __construct(FormatPathService $path, CacheService $cache, BagParameterService $parameter, ShowAccountDashboardFormat $dashboard, ShowCampaignFormat $campaign, ShowCampaignFileFormat $campaignFile, ShowTradeFormat $tradeFormat, ReadLogService $log) {
+        function __construct(FormatPathService $path, CacheService $cache, BagParameterService $parameter, ShowAccountDashboardFormat $dashboard, ShowCampaignFormat $campaign, ShowCampaignFileFormat $campaignFile, ShowTradeFormat $tradeFormat, ReadLogService $log, Router $router) {
 
             $this->path = $path;
             $this->cache = $cache;
@@ -71,6 +78,7 @@
             $this->campaignFile = $campaignFile;
             $this->tradeFormat = $tradeFormat;
             $this->log = $log;
+            $this->router = $router;
         }
 
         /**
@@ -123,10 +131,14 @@
 
             if(count($array) > 0):
                 foreach ($array AS $value):
-                    $list['accounts'][] = ['name' => $value['name'], 'content' => $this->dashboard->get($value['directory'])];
+                    $list['accounts'][] = [
+                        'name' => $value['name'], 
+                        'content' => $this->dashboard->get($value['directory']),
+                        'uri' => $this->router->generate('admin_show_dashboard', ['directory' => $value['directory']])
+                        ];
                 endforeach;
             endif;
-
+            
             return $list;
         }
 

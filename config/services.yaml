@@ -52,7 +52,7 @@ services:
 
     app.api.format.read:
         class: App\Service\FormatReadFileService
-        arguments: ["@filesystem"]
+        arguments: ["@filesystem", "@app.api.params"]
         public: true
 
     app.api.read.file:
@@ -62,7 +62,7 @@ services:
 
     app.api.show:
         class: App\Service\ShowService
-        arguments: ["@app.api.format.path", "@app.api.cache", "@app.api.params", "@app.api.show.format.dashboard", "@app.api.show.format.campaign", "@app.api.show.format.campaign.file", "@app.api.show.format.trade.file", "@app.api.read.log"]
+        arguments: ["@app.api.format.path", "@app.api.cache", "@app.api.params", "@app.api.show.format.dashboard", "@app.api.show.format.campaign", "@app.api.show.format.campaign.file", "@app.api.show.format.trade.file", "@app.api.read.log", "@router"]
         public: true
 
     app.api.show.format.dashboard:

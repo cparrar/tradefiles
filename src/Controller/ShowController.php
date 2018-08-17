@@ -14,6 +14,7 @@
      */
     class ShowController extends Controller {
 
+        
         /**
          * Show dashboard account
          *

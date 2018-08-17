@@ -23,7 +23,7 @@
                 [
                     'name' => 'directory',
                     'title' => 'Change reading directory files',
-                    'value' => 'C:\Users\Desarrollo\Downloads\Analysis\Analysis',
+                    'value' => '/home/ubuntu/workspace/Analysis',
                     'description' => 'Directory where the different subdirectories of the campaigns and the CSV files are for reading.',
                     'type' => $this->getReference('TYPE_DIRECTORY')
                 ],
@@ -39,6 +39,13 @@
                     'title' => 'Change of number of lines of raw logs',
                     'value' => '10',
                     'description' => 'Change the number of lines that are observed in the list of logs that are found in the file.',
+                    'type' => $this->getReference('TYPE_PARAMS')
+                ],
+                [
+                    'name' => 'csv_separator_column',
+                    'title' => 'Parameters CSV file separator',
+                    'value' => ',',
+                    'description' => 'You can change the separator of files CSV',
                     'type' => $this->getReference('TYPE_PARAMS')
                 ],
                 [

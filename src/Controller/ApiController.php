@@ -16,16 +16,6 @@
 
 
         /**
-         * @Route(path="/public/test")
-         */
-        public function test() {
-
-
-            dump($this->container->get('app.api.read.log')->getArray());
-            die;
-        }
-
-        /**
          * Return public dashboard data
          *
          * @Route(path="/public/dashboard", name="api_public_dashboard", methods={"GET"})

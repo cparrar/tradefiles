@@ -26,15 +26,21 @@
          * @var array
          */
         private $data = [];
+        
+        /**
+         * @var BagParameterService
+         */
+        private $parameter;
 
         /**
          * ReadCsvService constructor.
          *
          * @param Filesystem $filesystem
          */
-        public function __construct(Filesystem $filesystem) {
+        public function __construct(Filesystem $filesystem, BagParameterService $parameter) {
 
             $this->filesystem = $filesystem;
+            $this->parameter = $parameter;
         }
 
         /**
@@ -133,7 +139,7 @@
                     foreach ($rows AS $value) {
                         $list[] = array_map(function($data) {
                             return trim($data);
-                        }, explode(',', $value));
+                        }, explode($this->parameter->get('csv_separator_column', ','), $value));
                     }
                     unset($content, $rows, $value);
                 endif;
