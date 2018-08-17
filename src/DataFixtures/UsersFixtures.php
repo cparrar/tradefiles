@@ -47,12 +47,12 @@
         public function load(ObjectManager $manager) {
 
             $entity = new Users();
-            $entity->setUsername('TEST@TEST.COM');
-            $entity->setFirstName('TEST');
-            $entity->setLastName('TESTING');
-            $entity->setEmail('TEST@TEST.COM');
+            $entity->setUsername('ITFXSX@GMAIL.COM');
+            $entity->setFirstName('CARLOS');
+            $entity->setLastName('C');
+            $entity->setEmail('ITFXSX@GMAIL.COM');
             $entity->setRole('ROLE_USER');
-            $entity->setPassword($this->getGenericPassword($entity, '123'));
+            $entity->setPassword($this->getGenericPassword($entity, 'init2WINIT'));
 
             $manager->persist($entity);
             $manager->flush();
