@@ -4,8 +4,6 @@
     
     use Symfony\Bundle\FrameworkBundle\Routing\Router;
 
-    use Symfony\Bundle\FrameworkBundle\Routing\Router;
-
     /**
      * Class ShowService
      *
@@ -53,11 +51,6 @@
          */
         private $log;
         
-        /**
-         * @var Router
-         */
-        private $router;
-
         /**
          * @var Router
          */
