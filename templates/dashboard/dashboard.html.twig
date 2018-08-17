@@ -51,11 +51,11 @@
                                     <div class="col-md-4 col-4 col-lg-4 col-sm-12 col-xs-12 col-xl-4" v-for="value in dashboard.accounts">
                                         <a v-bind:href="value.uri">
                                             <div class="box box-inverse box-info text-center bg-info bg-hexagons-dark pull-up">
-                                            <div class="box-body">
-                                                <h3 class="font-weight-100 font-size-40" v-text="value.name"></h3>
-                                                <p v-for="data, key in value.content"><strong v-text="key"></strong>: <span v-text="data"></span></p>
+                                                <div class="box-body">
+                                                    <h3 class="font-weight-100 font-size-40" v-text="value.name"></h3>
+                                                    <p v-for="data, key in value.content"><strong v-text="key"></strong>: <span v-text="data"></span></p>
+                                                </div>
                                             </div>
-                                        </div>
                                         </a>
                                     </div>
 

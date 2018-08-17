@@ -4,6 +4,8 @@
     
     use Symfony\Bundle\FrameworkBundle\Routing\Router;
 
+    use Symfony\Bundle\FrameworkBundle\Routing\Router;
+
     /**
      * Class ShowService
      *
@@ -57,6 +59,11 @@
         private $router;
 
         /**
+         * @var Router
+         */
+        private $router;
+
+        /**
          * ShowService constructor.
          *
          * @param FormatPathService $path
@@ -67,6 +74,7 @@
          * @param ShowCampaignFileFormat $campaignFile
          * @param ShowTradeFormat $tradeFormat
          * @param ReadLogService $log
+         * @param Router $router
          */
         function __construct(FormatPathService $path, CacheService $cache, BagParameterService $parameter, ShowAccountDashboardFormat $dashboard, ShowCampaignFormat $campaign, ShowCampaignFileFormat $campaignFile, ShowTradeFormat $tradeFormat, ReadLogService $log, Router $router) {
 
@@ -135,7 +143,7 @@
                         'name' => $value['name'], 
                         'content' => $this->dashboard->get($value['directory']),
                         'uri' => $this->router->generate('admin_show_dashboard', ['directory' => $value['directory']])
-                        ];
+                    ];
                 endforeach;
             endif;
             
