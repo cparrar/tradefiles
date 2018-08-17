@@ -133,7 +133,7 @@
                     foreach ($rows AS $value) {
                         $list[] = array_map(function($data) {
                             return trim($data);
-                        }, explode(',', $value));
+                        }, explode('_', $value));
                     }
                     unset($content, $rows, $value);
                 endif;
