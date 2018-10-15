@@ -142,11 +142,13 @@
             $files2 = $this->searchPathFilesTrade($path, 1);
             if($files2->count() > 0):
                 foreach ($files2 AS $file):
-                    $list['Trade'] = (new ParamsConstruct('Trade',
+                    $list['Trade'][] = (new ParamsConstruct($this->getNameFormatTrade($file->getFilename()),
                         $directory,
                         $file->getRealPath(),
                         $file->isDir(),
-                        $file->isFile()
+                        $file->isFile(),
+                        null,
+                        $file->getFilename()
                     ))->getArray();
                 endforeach;
             endif;
@@ -181,7 +183,7 @@
         private function searchPathFilesTrade(string $path, int $depth = 0) {
 
             $finder = new Finder();
-            $finder->files()->in($path)->name(sprintf('%s_TRADES_*.csv', $this->pattern))->sortByName()->depth($depth);
+            $finder->files()->in($path)->name(sprintf('%s.csv', $this->pattern))->sortByName()->depth($depth);
 
             return $finder;
         }
@@ -212,5 +214,19 @@
         private function getNameFormat(string $name) {
 
             return str_replace('_', ' ', $name);
+        }
+
+        /**
+         * Get format name
+         *
+         * @param string $name
+         *
+         * @return mixed|null|string|string[]
+         */
+        private function getNameFormatTrade(string $name) {
+
+            $pattern = strtr($this->pattern, ['*' => '']);
+            $string = strtr($name, [$pattern.'_' => '', '.csv' => '', '_' => ' ']);
+            return mb_strtoupper(trim($string));
         }
     }

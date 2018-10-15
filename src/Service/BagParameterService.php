@@ -45,7 +45,7 @@
          */
         public function getDate() {
 
-            return $this->environment == 'dev' ? '20180718' : date($this->get('date_format'));
+            return $this->environment == 'dev' ? '30062018' : date($this->get('date_format'));
         }
 
         /**

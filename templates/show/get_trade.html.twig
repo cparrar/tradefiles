@@ -23,7 +23,7 @@
     {% endblock css %}
 
     {% block header %}
-        {{ header.header('Account: %s <br>Trade: %s'|format(directory_format, campaign_format),
+        {{ header.header('Account: %s <br>Trade: %s - %s'|format(directory_format, campaign_format, file),
             [
                 { 'name' : 'Accounts' },
                 { 'name' : directory_format, 'uri': path('admin_show_dashboard', { 'directory' : directory }) },
@@ -34,7 +34,7 @@
     {% endblock header %}
 
     {% block body %}
-        <div class="row" id="api_secure_account_trade" data-ajax-url="{{ absolute_url(path('api_secure_account_trade', {'directory':directory, 'campaign':campaign } )) }}" data-interval="{{ bag_params.get('time_interval_account_trade') }}">
+        <div class="row" id="api_secure_account_trade" data-ajax-url="{{ absolute_url(path('api_secure_account_trade', {'directory':directory, 'campaign':campaign, 'file':file } )) }}" data-interval="{{ bag_params.get('time_interval_account_trade') }}">
             <div class="col-12 col-lx-12 col-sm-12 col-md-12" v-if="reload">
 
                 <div class="row" v-if="dashboard">

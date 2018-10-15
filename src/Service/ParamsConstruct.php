@@ -36,6 +36,11 @@
         private $isFile;
 
         /**
+         * @var null
+         */
+        private $fileName;
+
+        /**
          * @var array|null
          */
         private $content;
@@ -55,13 +60,14 @@
          * @param bool $isFile
          * @param null $content
          */
-        function __construct(string $name, string $directory, string $path, bool $isDir = true, bool $isFile = false, $content = null) {
+        function __construct(string $name, string $directory, string $path, bool $isDir = true, bool $isFile = false, $content = null, $fileName = null) {
 
             $this->name = $name;
             $this->directory = $directory;
             $this->path = $path;
             $this->isDir = $isDir;
             $this->isFile = $isFile;
+            $this->fileName = $fileName;
             $this->content = $content;
             $array = get_object_vars($this);
             array_pop($array);

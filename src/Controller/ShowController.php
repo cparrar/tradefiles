@@ -77,7 +77,7 @@
          * Show campaign account
          *
          * @Route(
-         *     path="/{directory}/{campaign}/trade",
+         *     path="/{directory}/{campaign}/trade/{file}",
          *     name="admin_show_trade",
          *     requirements={"directory" = "\w+", "campaign" = "\w+"},
          *     methods={"GET"}
@@ -88,18 +88,27 @@
          *
          * @return \Symfony\Component\HttpFoundation\Response
          */
-        public function getTrade(string $directory, string $campaign): Response {
+        public function getTrade(string $directory, string $campaign, string $file = null): Response {
 
-            $path = sprintf('%s/%s/%s', $this->container->get('app.api.params')->get('directory'), $directory, $campaign);
+            if(is_null($file)):
+                throw $this->createNotFoundException('File Not Valid');
+            endif;
+
+            $path = sprintf('%s/%s/%s/trades/%s', $this->container->get('app.api.params')->get('directory'), $directory, $campaign, $file);
 
             if($this->container->get('filesystem')->exists($path) != true):
                 throw $this->createNotFoundException('Account Campaign Trade no available');
+            endif;
+
+            if(!is_file($path)):
+                throw $this->createNotFoundException('File Not Found');
             endif;
 
             return $this->render('show/get_trade.html.twig', [
                 'directory' => $directory,
                 'directory_format' => str_replace('_', ' ', $directory),
                 'campaign' => $campaign,
+                'file' => $file,
                 'campaign_format' => str_replace('_', ' ', $campaign)
             ]);
         }

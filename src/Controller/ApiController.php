@@ -171,7 +171,7 @@
          * Get information trades
          *
          * @Route(
-         *     path="/secure/{directory}/{campaign}/trade",
+         *     path="/secure/{directory}/{campaign}/trade/{file}",
          *     name="api_secure_account_trade",
          *     requirements={"directory" = "\w+", "campaign" = "\w+"},
          *     methods={"GET"}
@@ -183,14 +183,21 @@
          * @return JsonResponse
          * @throws \Psr\Cache\InvalidArgumentException
          */
-        public function getAccountTrade(string $directory, string $campaign): JsonResponse {
+        public function getAccountTrade(string $directory, string $campaign, string $file): JsonResponse {
 
-            $path = sprintf('%s/%s/%s', $this->container->get('app.api.params')->get('directory'), $directory, $campaign);
+            $path = sprintf('%s/%s/%s/trades/%s', $this->container->get('app.api.params')->get('directory'), $directory, $campaign, $file);
 
             if($this->container->get('filesystem')->exists($path) != true):
                 return new JsonResponse(['code' => 404, 'message' => 'Account trades no available'], 404);
             endif;
 
-            return new JsonResponse($this->container->get('app.api.show')->getTrade($directory, $campaign));
+            return new JsonResponse($this->container->get('app.api.show')->getTrade($directory, $campaign, $file));
+        }
+
+        /**
+         * @Route(path="/test")
+         */
+        public function test() {
+            dump($this->container->get('app.api.format.menu')->get());die;
         }
     }

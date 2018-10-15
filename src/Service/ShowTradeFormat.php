@@ -49,10 +49,10 @@
          *
          * @return array|null
          */
-        public function get(string $directory, string $campaign) {
+        public function get(string $directory, string $campaign, string $file) {
 
             if($this->params->has($directory)):
-                return $this->getInstanceDirectory($directory, $campaign);
+                return $this->getInstanceDirectory($directory, $campaign, $file);
             endif;
 
             return null;
@@ -66,10 +66,10 @@
          *
          * @return array|null
          */
-        private function getInstanceDirectory(string $directory, string $campaign) {
+        private function getInstanceDirectory(string $directory, string $campaign, string $file) {
 
             if($this->params->getInstance($directory)->getContent() instanceof BagData):
-                return $this->getCampaign($campaign, $this->params->getInstance($directory)->getContent());
+                return $this->getCampaign($campaign, $this->params->getInstance($directory)->getContent(), $file);
             endif;
 
             return null;
@@ -83,10 +83,10 @@
          *
          * @return array|null
          */
-        private function getCampaign(string $campaign, BagData $bagData) {
+        private function getCampaign(string $campaign, BagData $bagData, string $file) {
 
             if($bagData->has($campaign)):
-                return $this->getInstanceCampaign($campaign, $bagData);
+                return $this->getInstanceCampaign($campaign, $bagData, $file);
             endif;
 
             return null;
@@ -100,10 +100,10 @@
          *
          * @return array|null
          */
-        private function getInstanceCampaign(string $campaign, BagData $bagData) {
+        private function getInstanceCampaign(string $campaign, BagData $bagData, string $file) {
 
             if($bagData->getInstance($campaign)->getContent() instanceof BagData):
-                return $this->getFile($bagData->getInstance($campaign)->getContent());
+                return $this->getFile($bagData->getInstance($campaign)->getContent(), $file);
             endif;
 
             return null;
@@ -116,10 +116,14 @@
          *
          * @return array|null
          */
-        private function getFile(BagData $bagData) {
+        private function getFile(BagData $bagData, string $file) {
 
             if($bagData->has('Trade')):
-                return $this->fileExist($bagData->getInstance('Trade'));
+                foreach ($bagData->get('Trade') AS $key => $value):
+                    if($value['fileName'] === $file):
+                        return $this->fileExist($bagData->getInstance('Trade')->getInstance($key));
+                    endif;
+                endforeach;
             endif;
 
             return null;

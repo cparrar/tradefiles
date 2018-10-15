@@ -103,13 +103,17 @@
          */
         private function getLevel3(string $directory, array $array = []) {
 
+
             $list = [];
             foreach ($array AS $key => $value):
-                if($value['isFile']):
-                    if($key == 'Information'):
-                        $list[] = $this->getFileFormat($value, 'admin_show_campaign', ['directory' => $directory, 'campaign' => $value['directory']]);
-                    else:
-                        $list[] = $this->getFileFormat($value, 'admin_show_trade', ['directory' => $directory, 'campaign' => $value['directory']]);
+
+                if($key == 'Information'):
+                    $list[] = $this->getFileFormat($value, 'admin_show_campaign', ['directory' => $directory, 'campaign' => $value['directory']]);
+                elseif ($key == 'Trade'):
+                    if(is_array($value)):
+                        foreach ($value AS $data):
+                            $list[] = $this->getFileFormat($data, 'admin_show_trade', ['directory' => $directory, 'campaign' => $data['directory'], 'file' => $data['fileName']]);
+                        endforeach;
                     endif;
                 endif;
             endforeach;

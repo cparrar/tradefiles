@@ -258,15 +258,9 @@
          * @return array|mixed|\Symfony\Component\Cache\CacheItem
          * @throws \Psr\Cache\InvalidArgumentException
          */
-        public function getTrade(string $directory, string $campaign) {
+        public function getTrade(string $directory, string $campaign, string $file) {
 
-            if($this->cache->has('cache_account_trade')):
-                return $this->cache->get('cache_account_trade');
-            else:
-                $data = $this->getTradeFormat($directory, $campaign);
-                $this->cache->set('cache_account_trade', $data, $this->parameter->get('cache_account_trade'));
-                return $data;
-            endif;
+            return $this->getTradeFormat($directory, $campaign, $file);
         }
 
         /**
@@ -278,7 +272,7 @@
          * @return array
          * @throws \Psr\Cache\InvalidArgumentException
          */
-        private function getTradeFormat(string $directory, string $campaign) {
+        private function getTradeFormat(string $directory, string $campaign, string $file) {
 
             $list = [];
             $array = $this->path->get();
@@ -286,7 +280,7 @@
             if(array_key_exists($directory, $array)):
                 $list['logs'] = $this->log->getRawLimited($this->parameter->get('log_raw_show', 10));
                 $list['account'] = ['name' => $array[$directory]['name'], 'content' => $this->dashboard->get($directory)];
-                $list['trade'] = $this->tradeFormat->get($directory, $campaign);
+                $list['trade'] = $this->tradeFormat->get($directory, $campaign, $file);
             endif;
 
             return $list;

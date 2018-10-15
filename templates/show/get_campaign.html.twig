@@ -28,10 +28,34 @@
                 { 'name' : 'Information' }
             ])
         }}
+        <section class="content-header" style="margin-top: 10px;">
+            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-config">Configuration</button>
+        </section>
     {% endblock header %}
 
     {% block body %}
         <div class="row" id="api_secure_account_campaign" data-ajax-url="{{ absolute_url(path('api_secure_account_campaign', {'directory':directory, 'campaign':campaign } )) }}" data-interval="{{ bag_params.get('time_interval_account_campaign') }}">
+
+            {#<div class="modal modal-right fade" id="modal-config" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Configuration</h5>
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Your content comes here</p>
+                        </div>
+                        <div class="modal-footer modal-footer-uniform">
+                            <button type="button" class="btn btn-bold btn-pure btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-bold btn-pure btn-primary float-right">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>#}
+
             <div class="col-12 col-lx-12 col-sm-12 col-md-12" v-if="reload">
 
                 <div class="row" v-if="dashboard">

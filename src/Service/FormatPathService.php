@@ -39,7 +39,6 @@
          */
         public function get() {
 
-
             if($this->cache->has('cache_path')):
                 return $this->cache->get('cache_path');
             else:
